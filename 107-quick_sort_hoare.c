@@ -9,6 +9,7 @@
 void Swap(int *A, int *B)
 {
 	int tmp;
+
 	tmp = *A;
 	*A = *B;
 	*B = tmp;
