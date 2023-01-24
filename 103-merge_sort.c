@@ -14,6 +14,7 @@
 void merge(int *array, int *tmp_sort, size_t low, size_t mid, size_t high)
 {
 	size_t l, m, k, n = high - low;
+
 	l = low;
 	m = mid;
 	printf("Merging...\n");
@@ -21,6 +22,7 @@ void merge(int *array, int *tmp_sort, size_t low, size_t mid, size_t high)
 	print_array((const int *)array + low, mid - low);
 	printf("[right]: ");
 	print_array((const int *)array + mid, high - mid);
+
 	for (k = 0; k < n; k++)
 	{
 		if (l < mid && (m >= high || array[l] <= array[m]))
@@ -49,6 +51,7 @@ void merge(int *array, int *tmp_sort, size_t low, size_t mid, size_t high)
 void m_split(int *tmp_sort, int *array, size_t low, size_t high)
 {
 	size_t mid;
+
 	if (high - low <= 1)
 		return;
 	mid = (low + high) / 2;
