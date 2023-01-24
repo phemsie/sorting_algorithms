@@ -1,58 +1,67 @@
 #include "sort.h"
 
 /**
- * Swap - swaps two doubly linked list nodes
- * @A: the first node
- * @B: the second node
+ * back - Traverse backwards and swap
+ * @stop: The node to stop at
+ * @compare: The node to compare
+ *
+ * Return: None
  */
-
-void Swap(listint_t *A, listint_t *B)
+void back(listint_t **stop, listint_t *compare)
 {
-	if (A->prev != NULL)
-		A->prev->next = B;
-	if (B->next != NULL)
-		B->next->prev = A;
-	A->next = B->next;
-	B->prev = A->prev;
-	A->prev = B;
-	B->next = A;
+	listint_t *previous = NULL, *pp = NULL, *nn = NULL;
+
+	previous = compare->prev;
+	while (previous)
+	{
+		if (previous->n > compare->n)
+		{
+			pp = previous->prev;
+			nn = compare->next;
+			compare->next = previous;
+			previous->prev = compare;
+			if (!pp)
+			{
+				*stop = compare;
+				(*stop)->prev = NULL;
+			}
+			else
+			{
+				compare->prev = pp;
+				pp->next = compare;
+			}
+			if (nn)
+			{
+				previous->next = nn;
+				nn->prev = previous;
+			}
+			else
+				previous->next = NULL;
+			print_list((const listint_t *)*stop);
+		}
+		else
+			return;
+		previous = compare->prev;
+	}
 }
 
 /**
- * insertion_sort_list - sorts in ascending order using insertion sort
- * @list: pointer to doubly linked list node
- * Only swapping is allowed
+ * insertion_sort_list - Insertion sort implementation
+ * @list: Pointer to the address of head node
+ *
+ * Return: None
  */
-
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *curr = NULL, *prev = NULL, *head;
-	if (list == NULL || (*list)->next == NULL || (*list) == NULL)
+	listint_t *current = NULL, *next = NULL;
+
+	if (!list || !(*list) || !((*list)->next))
 		return;
-	head = *list;
-	while (head->next != NULL)
+	current = *list;
+	while (current->next)
 	{
-		if (head->n > head->next->n)
-		{
-			curr = head->next;
-
-			Swap(head, head->next);
-			if (curr->prev == NULL)
-				*list = curr;
-			print_list((const listint_t *)*list);
-
-			while (curr->prev != NULL)
-			{
-				if (curr->n >= curr->prev->n)
-					break;
-				prev = curr->prev;
-				Swap(prev, curr);
-				if (curr->prev == NULL)
-					*list = curr;
-				print_list((const listint_t *)*list);
-			}
-		}
-		else
-			head = head->next;
+		next = current->next;
+		back(list, next);
+		current = next;
 	}
 }
