@@ -45,8 +45,7 @@ void cocktail_sort_list(listint_t **list)
 			{
 				Swap(&head, &tail);
 				if (!tail->prev)
-					*li
-						t = tail;
+					*list = tail;
 				print_list(*list);
 				flag = 1;
 			}
