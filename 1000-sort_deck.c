@@ -81,8 +81,7 @@ void insertion_sort_list(deck_node_t **list)
 			{
 				Swap(curr->prev, curr);
 				if (curr->prev == NULL)
-					*li
-						t = curr;
+					*list = curr;
 			}
 			else
 				curr = curr->prev;

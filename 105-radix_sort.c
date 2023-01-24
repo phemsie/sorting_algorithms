@@ -67,8 +67,7 @@ void r_sort(int *array, int size, int lsd)
 		return;
 	for (i = 0; i < asize; i++)
 		if (arr[i] != 0)
-			buff[i] = malloc(si
-					eof(int) * arr[i]);
+			buff[i] = malloc(sizeof(int) * arr[i]);
 	help_sort(array, buff, size, lsd);
 	r_sort(array, size, lsd + 1);
 	for (i = 0; i < asize; i++)
