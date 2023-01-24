@@ -14,6 +14,7 @@ void help_sort(int *array, int **buff, int size, int lsd)
 	int i, j, asize = 10, num;
 	int arr[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	int arr2[10] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
 	for (i = 0; i < size; i++)
 	{
 		num = array[i];
